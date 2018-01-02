@@ -506,7 +506,7 @@ void Control_BLE::updateStateAction(int data){
 			break;
 		case AUTO :
 			if(data == 69)
-				robot->evasor_debug(10,30);
+				robot->evasor_debug(15,30);
 			else if(data == 83)
 				robot->seguidor();
 			break;

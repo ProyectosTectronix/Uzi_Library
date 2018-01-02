@@ -29,6 +29,7 @@ public:
 	void car();
 	int note(int nota, int octava);
 	void sound(int nota, int octava, int delay);
+	void sound(int frecuencia, int d);
 private:
 	int pin_buzzer;
 };

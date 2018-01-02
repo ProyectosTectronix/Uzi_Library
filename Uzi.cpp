@@ -69,7 +69,7 @@ void Uzi::init(){
 	right_act = 0;
 	actuation = 0;
 	saturation = 250;
-	follower_velocity = 50;
+	follower_velocity = 100;
 }
 
 void Uzi::evasor(int evadir, int ignorar){
@@ -110,7 +110,7 @@ void Uzi::evasor_debug(int evadir, int ignorar){
 	float der_medido = 0;
 	String tmp = "";
 	unsigned long time = millis();
-	unsigned long interval = 100;
+	unsigned long interval = 200;
 	if( !((evadir < SONIC_MIN) || (evadir > ignorar) || (ignorar > SONIC_MAX)) ){ // llamado valido de la funcion
 		der_medido = s_sonic->read(1, ignorar);
 		delay(25); // para evitar interferencia de pulsos emitidos y recibidos
@@ -126,9 +126,9 @@ void Uzi::evasor_debug(int evadir, int ignorar){
 			tmp = "";
 			tmp += SONIC;
 			tmp += " ";
-			tmp += distancia_ob_izq;
+			tmp += (int )distancia_ob_izq;
 			tmp += " ";
-			tmp += distancia_ob_der;
+			tmp += (int )distancia_ob_der;
 
 			if((distancia_ob_izq < 10) && (distancia_ob_der < 10)){
 				Serial.print(tmp + "/////////");
@@ -236,6 +236,8 @@ void Uzi::evasor_debug(int evadir, int ignorar){
 
 
 void Uzi::seguidor(){
+	unsigned long time = millis();
+	unsigned long interval = 200;
 	line_pos = line_follower->readLine();
 
 	//medicion = (1000*qres[0] + 2000*qres[1] + 3000*qres[2] + 4000*qres[3] + 5000*qres[4])/(qres[0] + qres[1] +qres[2] + qres[3] + qres[5]);
@@ -256,12 +258,85 @@ void Uzi::seguidor(){
 
     left_act = (follower_velocity - actuation < 0)?(0):(follower_velocity - actuation);
   	right_act = (follower_velocity + actuation < 0)?(0):(follower_velocity + actuation);
+
+  	left_act = (left_act > follower_velocity)?(follower_velocity):(left_act);
+  	right_act = (right_act > follower_velocity)?(follower_velocity):(right_act);
 	
   	error_i = 	( (left_act >= (saturation - 1)) || (right_act >= (saturation - 1)) )?(0):
   				( (left_act <= 1) || (right_act <= 1) )?(0):
   				(error_i);
 
-  	String tmp = "";
-  	Serial.println(tmp + "actuacion:\t\t" + left_act + "\t\t" + right_act);
+//  	String tmp = "";
+//  	Serial.println(tmp + "actuacion:\t\t" + left_act + "\t\t" + right_act);
 	Motor::differentialFWD(left_act, right_act);
+
+	//---------- print display --------//
+
+	if(time - time_prev >= interval){
+	if(Serial){
+		String tmp = "";
+		tmp += MOTOR;
+		tmp += " ";
+		tmp += left_act;
+		tmp += " ";
+		tmp += right_act;
+		if(left_act > 100 && right_act > 100){
+			tmp += "///////////";
+		}
+		else if(left_act > 100 || right_act > 100){
+			tmp += "////////////";
+		}
+		else if(left_act > 10 && right_act > 10){
+			tmp += "/////////////";
+		}
+		else if(left_act > 10 || right_act > 10){
+			tmp += "//////////////";
+		}
+		else {
+			tmp += "///////////////";
+		}
+		Serial.print(tmp);
+
+		tmp = "";
+		tmp += QRE;
+		tmp += " ";
+		if(line_pos < 1000){
+			tmp += "0 0 0 0 0";
+		}
+		else if(line_pos < 1500){
+			tmp += "1 0 0 0 0";
+		}
+		else if(line_pos < 2000){
+			tmp += "1 1 0 0 0";
+		}
+		else if(line_pos < 2500){
+			tmp += "0 1 0 0 0";
+		}
+		else if(line_pos < 3000){
+			tmp += "0 1 1 0 0";
+		}
+		else if(line_pos < 3500){
+			tmp += "0 0 1 0 0";
+		}
+		else if(line_pos < 4000){
+			tmp += "0 0 1 1 0";
+		}
+		else if(line_pos < 4500){
+			tmp += "0 0 0 1 0";
+		}
+		else if(line_pos < 5000){
+			tmp += "0 0 0 1 1";
+		}
+		else if(line_pos < 5500){
+			tmp += "0 0 0 0 1";
+		}
+		else{
+			tmp += "1 1 1 1 1";
+		}
+		tmp += "/////////";
+		Serial.print(tmp);
+		time_prev = time;
+	}
+	}
+
 }

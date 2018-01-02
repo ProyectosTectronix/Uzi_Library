@@ -193,6 +193,7 @@
 #define QRE 	'B'
 #define RGB 	'C'
 #define MOTOR 	'D'
+#define BUTTON 	'E'
 
 // ---------- Colores para app----------------//
 #define BLACK		0
@@ -215,8 +216,8 @@
 #define BLANCO		255,255,255
 
 //---------- PID ---------//
-#define KP 0.025
+#define KP 0.05
 #define KI 0.0
-#define KD 0.0
+#define KD 0.01
 // faltan muchisimas mas macros, favor revisar esquemático y testear
 #endif

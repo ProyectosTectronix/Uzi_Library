@@ -34,10 +34,11 @@ public:
 	void connected();
 	void disconnected();
 	void setColor(int i, int red, int green, int blue);
+	void setBrightness(int b);
 	int getColor(int n);
 	void demo();
 //	void stop();
-//	void rainbow();
+	void rainbow();
 private:
 	int num_pix;
 	int brightness;

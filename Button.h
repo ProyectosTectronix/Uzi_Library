@@ -1,18 +1,23 @@
+//////////////////////////////////////////////////////////////////////
+//                            TECTRONIX								//
+//                 Software Library for UZI_ROBOT					//
+//                             Enjoy!								//
+//////////////////////////////////////////////////////////////////////
 #ifndef _BUTTON_H_
 #define _BUTTON_H_
 
-#include "macros.h"
-#include "Arduino.h"
+#include "RoboticElement.h"
 
-class Button{
+class Button:public RoboticElement{
 public:
 	Button();
 	Button(int sw);
 	~Button();
 	void init();
 	bool isPressed();
-	bool isRelease();
+	bool isReleased();
 	bool isClicked();
+	void getState();
 private:
 	int pin_button;
 	bool state_button;

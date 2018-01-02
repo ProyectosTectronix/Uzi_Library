@@ -1,3 +1,8 @@
+//////////////////////////////////////////////////////////////////////
+//                            TECTRONIX								//
+//                 Software Library for UZI_ROBOT					//
+//                             Enjoy!								//
+//////////////////////////////////////////////////////////////////////
 #include "Button.h"
 
 Button::Button(){
@@ -48,22 +53,27 @@ void Button::init(){
 	}
 	state_button = false;
 }
+
 bool Button::isPressed(){
 	int tmp = analogRead(pin_button);
 	if((tmp >= threshold_low) && (tmp <= threshold_high)){
+//		state_button = true;
 		return true;
 	}
 	else{
+//		state_button = false;
 		return false;
 	}
 }
 
-bool Button::isRelease(){
+bool Button::isReleased(){
 	int tmp = analogRead(pin_button);
 	if((tmp >= threshold_low) && (tmp <= threshold_high)){
+//		state_button = false;
 		return false;
 	}
 	else{
+//		state_button = true;
 		return true;
 	}
 }
@@ -71,9 +81,24 @@ bool Button::isRelease(){
 bool Button::isClicked(){
 	if(this->isPressed()){
 		while(this->isPressed());
+		state_button = !state_button;
 		return true;
 	}
 	else {
+		state_button = state_button;
 		return false;
+	}
+}
+
+void Button::getState(){
+	if(Serial){
+		String tmp = "";
+		tmp += BUTTON;
+		tmp += " ";
+		tmp += num_button;
+		tmp += " ";
+		tmp += (state_button == true)?(1):(0);
+		tmp += '/';
+		Serial.print(tmp);
 	}
 }

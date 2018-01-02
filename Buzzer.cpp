@@ -273,3 +273,8 @@ void Buzzer::sound(int nota, int octava, int d){
   tone(pin_buzzer, frec, d);
   delay(d);
 }
+
+void Buzzer::sound(int frecuencia, int d){
+	tone(pin_buzzer, frecuencia, d);
+	delay(d);
+}

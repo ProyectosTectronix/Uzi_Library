@@ -133,6 +133,12 @@ void Lights::setColor(int i, int red, int green, int blue){
 	delay(1);
 }
 
+void Lights::setBrightness(int b){
+	brightness = b;
+	leds_front->setBrightness(brightness);
+	leds_back->setBrightness(brightness);
+}
+
 int Lights::getColor(int n){
 	uint32_t color = 	(n < 2)?(leds_front->getPixelColor(n)):
 		   				(n < 4)?(leds_back->getPixelColor(n)):
@@ -169,4 +175,49 @@ int Lights::getColor(int n){
 			break;
 	}
 	return tmp;
+}
+
+void Lights::rainbow(){
+	for(int i=0; i<256; i++){
+    	setColor(3,255,i,0);
+    	setColor(2,255,0,255-i);
+    	setColor(0,i,0,255);
+    	setColor(1,0,255-i,255);
+    	delay(1);
+  	}
+  	for(int i=255; i>=0; i--){
+    	setColor(3,i,255,0);
+    	setColor(2,255,255-i,0);
+    	setColor(0,255,0,i);
+    	setColor(1,255-i,0,255);
+    	delay(1);
+  	}
+  	for(int i=0; i<256; i++){
+    	setColor(3,0,255,i);
+    	setColor(2,255-i,255,0);
+    	setColor(0,255,i,0);
+    	setColor(1,255,0,255-i);
+    	delay(1);
+  	}
+  	for(int i=255; i>=0; i--){
+    	setColor(3,0,i,255);
+    	setColor(2,0,255,255-i);
+    	setColor(0,i,255,0);
+    	setColor(1,255,255-i,0);
+    	delay(1);
+  	}
+  	for(int i=0; i<256; i++){
+    	setColor(3,i,0,255);
+    	setColor(2,0,255-i,255);
+    	setColor(0,0,255,i);
+    	setColor(1,255-i,255,0);
+    	delay(1);
+  	}
+  	for(int i=255; i>=0; i--){
+    	setColor(3,255,0,i);
+    	setColor(2,255-i,0,255);
+    	setColor(0,0,i,255);
+    	setColor(1,0,255,255-i);
+    	delay(1);
+  	}
 }
