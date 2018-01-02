@@ -1,4 +1,6 @@
-# Características:
+# Versión 2.3.1
+
+## Características:
 
 - **Botones**: Se pueden crear instancias del objeto **Button** mediante su contructor por defecto _**Button::** Button()_ y por su constructor  _**Button::** Button(int **id_button**)_: El primero permite crear una instancia de **Button** que "detecta" el estado de cualquiera de los 5 botones del *Robot Uzi*; mientras que el segundo nos permite interactuar únicamente con el boton especificado por *id_button*. En la sección de ejemplos está disponible un código de prueba. Están disponibles las siguientes funciones:
     - **init()** : Inicializa el Objeto **Button** para poder interactuar con él.
