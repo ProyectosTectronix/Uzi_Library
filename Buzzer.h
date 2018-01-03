@@ -20,13 +20,13 @@ class Buzzer{
 public:
 	Buzzer();
 	~Buzzer();
-	void init(); // sonido de encendido.
-	void r3d3(); // sonido de arturi3
-	void uzi(); // vocalización de la palabra UZI
-	void happy(); // expresion como la de Wall-i
-	void scary(); // expresion como la de Wall-i
-	void tatan(); // sonido  "TATAN"!
-	void car();
+	void init(); // "Uzi ON" sound .
+	void r3d3(); // r2d2 of star wars sound.
+	void uzi(); // word uzi sound.
+	void happy(); // happy sound.
+	void scary(); // scary sound.
+	void tatan(); // 
+	void car(); // car sound.
 	int note(int nota, int octava);
 	void sound(int nota, int octava, int delay);
 	void sound(int frecuencia, int d);
