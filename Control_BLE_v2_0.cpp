@@ -16,8 +16,8 @@
  * @date : January 2016
  *
  * @description : 
- *   Implementación de clase Control_BLE para comandar el robot usando nuestra aplicación
- *	móvil.
+ * implementation of the "Control BLE" class to command the robot 
+ * using the cell phone application
  */
 #include "Control_BLE_v2_0.h"
 #include "macros.h"
@@ -458,7 +458,7 @@ void Control_BLE::updateStateDirection(int data){
 
 void Control_BLE::updateStateAction(int data){
 	/**
-	 * El data se usa para las otras rutinas como las luces y el buzzer.
+	 * the data is used for the ligts routines and the buzzer routine.
 	 */
 	switch(state_uzi){
 		case IDLE :
