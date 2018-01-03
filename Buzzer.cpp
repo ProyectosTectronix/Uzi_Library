@@ -12,9 +12,9 @@
  * @date : december 2016
  *
  * @description :
- *     Implementacion de la clase Buzzer en donde se busca hacer
- *   que el robot tenga "emociones" emitiendo sonidos distintos
- *   para distintos casos.
+ *     Implementation of the Buzzer Class, in this class 
+ *   the robot get emotions whith diferents sounds
+ *   for diferent cases.
  */
 #include "Arduino.h"
 #include "macros.h"
@@ -28,8 +28,7 @@
  * @return : none
  *
  * @description : 
- *     Constructor por defecto que asigna el pin en donde se encuentra
- *   conectado el buzzer.
+ * Is it assigned the pin where is connect the buzzer
  */
 Buzzer::Buzzer(){
   pin_buzzer = PIN_BUZZER;
@@ -43,7 +42,8 @@ Buzzer::Buzzer(){
  * @return : none 
  * 
  * @description :
- *     Destructor. Por ahora no se pide momeria por lo que no es necesario liberarla.
+ *Destructor. In this moment dont needed memory whence is not necessary 
+ *release it
  */
 Buzzer::~Buzzer(){
 
@@ -57,7 +57,7 @@ Buzzer::~Buzzer(){
  * @return : none
  *
  * @description :
- *     Emite un sonido puro de 440 Hz para testear el buzzer.
+ * Play a pure sound of 440 Hz for test the buzzer. 
  */
 void Buzzer::init(){
   tone(pin_buzzer,440,500);
@@ -72,7 +72,7 @@ void Buzzer::init(){
  * @return : none
  *
  * @description :
- *     Emite un sonido que imita a R2D2 de la pelicula Star Wars.
+ * play a sound like 2d2d of the movie star wars.
  */
 void Buzzer::r3d3(){
   	int f = 0;
@@ -154,8 +154,8 @@ void Buzzer::r3d3(){
  * @return : none
  *
  * @description :
- *     Se intento hacer que vocalizara la palabra "UZI" pero no se logro con los resultados esperados
- *   por lo que se espera retomar cuando haya mas tiempo, revisar y comentar combios.
+ *  tried to play the word "UZI", but the results doesnt the expected.  
+ *  this will be fixed soon.
  */
 void Buzzer::uzi(){
 	int f = 0;
@@ -174,7 +174,7 @@ void Buzzer::uzi(){
  * @return : none
  *
  * @description :
- *     Emite un sonido de jubilo, o al menos eso intenta xD.
+ *  Play a happy sound.
  */
 void Buzzer::happy(){
 	for(int i=0; i<500; i++){
@@ -199,7 +199,7 @@ void Buzzer::happy(){
  * @param : none
  *
  * @return : none
- *
+ *play a scary sound.
  * @
  */
 void Buzzer::scary(){
@@ -221,7 +221,7 @@ void Buzzer::scary(){
  * @return : none
  *
  * @description :
- *     Emite un sonido caracteristico de successfull o finish.
+ *  Play a "successfull" sound. 
  */
 void Buzzer::tatan(){
 	tone(pin_buzzer,440,100);
@@ -238,7 +238,7 @@ void Buzzer::tatan(){
  * @return : none
  *
  * @description :
- *     Emite un sonido parecido al encendido de un camaro, o al menos lo intenta xD.
+ * Play a "car beginning" sound.  
  */
 void Buzzer::car(){
 	int f = 0;
