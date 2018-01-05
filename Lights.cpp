@@ -12,8 +12,8 @@
  * @date : december 2016
  *
  * @description : 
- *     Implementación de clase Lights para funciones básicas de los LEDs RGB
- *   Utilizando la biblioteca de funciones de Adafruit
+ *  Implementation of the "lights class" for the LEDs RGB basic functions 
+ *  using the function library of adafruit
  */
 #include "Lights.h"
 #include <Adafruit_NeoPixel.h>
