@@ -2,8 +2,8 @@
 #include <Ultrasonic_UZI.h>
 
 Ultrasonic_UZI prueba_de_sonico = Ultrasonic_UZI();
-int lectura_sensor_izq = 0; // variable para guardar las lecturas del sensor izquierdo.
-int lectura_sensor_der = 0; // variables para guardar las lecturas del sensor derecho.
+float lectura_sensor_izq = 0; // variable para guardar las lecturas del sensor izquierdo.
+float lectura_sensor_der = 0; // variables para guardar las lecturas del sensor derecho.
 
 void setup() {
   // put your setup code here, to run once:
@@ -20,7 +20,8 @@ void loop() {
                             // Se usa 20 ms ya que es el tiempo estimado de lectura a máximo rango.
   lectura_sensor_der = prueba_de_sonico.read(1, 30); // Se hace la lectura del sensor de la derecha.
   delay(20);
-  Serial.print("lectura raw de la izquierda : " + lectura_sensor_izq + "\t\t");
-  Serial.print("lectura raw de la derecha : " + lectura_sensor_der);
+  String tmp = "";
+  Serial.print(tmp + "lectura raw de la izquierda : " + lectura_sensor_izq + "\t\t");
+  Serial.print(tmp + "lectura raw de la derecha : " + lectura_sensor_der);
   Serial.println();
 }

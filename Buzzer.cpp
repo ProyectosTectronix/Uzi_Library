@@ -57,10 +57,10 @@ Buzzer::~Buzzer(){
  * @return : none
  *
  * @description :
- *     Emite un sonido puro de 440 Hz para testear el buzzer.
+ *     Emite un sonido puro de 262 Hz para testear el buzzer.
  */
 void Buzzer::init(){
-  tone(pin_buzzer,440,500);
+  tone(pin_buzzer,262,500);
   delay(500);
 }
 

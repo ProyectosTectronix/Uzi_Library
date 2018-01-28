@@ -5,7 +5,7 @@
 Motor motores = Motor(); // Creación del Objeto Motor.
 Qre linea = Qre(); // Creación del Objeto Qre.
 
-int qres[5]; // Variable que guardará el estado de los 5 Qres
+int *qres; // Variable que guardará el estado de los 5 Qres
 
 void setup() {
   // put your setup code here, to run once:

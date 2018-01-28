@@ -83,19 +83,19 @@ void Uzi::evasor(int evadir, int ignorar){
 		izq_medido = (izq_medido == 0)?(ignorar):(izq_medido);
 		der_medido = (der_medido == 0)?(ignorar):(der_medido);
 
-		distancia_ob_izq = izq_medido*0.2 + distancia_ob_izq*0.8;
-		distancia_ob_der = der_medido*0.2 + distancia_ob_der*0.8;
+		distancia_ob_izq = izq_medido*0.250 + distancia_ob_izq*0.750;
+		distancia_ob_der = der_medido*0.250 + distancia_ob_der*0.750;
 
 		if((distancia_ob_der == 0) || (distancia_ob_izq == 0)){
 			Motor::forward(100);
 		}
 		else{
 			if( (distancia_ob_izq <= evadir) && (distancia_ob_der > evadir) ) // objeto por la izquierda
-				Motor::right(50,200);
+				Motor::right(50,300);
 			else if( (distancia_ob_izq > evadir) && (distancia_ob_der <= evadir) ) // objeto por la derecha
-				Motor::left(50,200);
-			else if( (distancia_ob_izq <= evadir) && (distancia_ob_der <= evadir) ) // objeto al frente
 				Motor::left(50,300);
+			else if( (distancia_ob_izq <= evadir) && (distancia_ob_der <= evadir) ) // objeto al frente
+				Motor::left(50,600);
 			else
 				Motor::forward(100);
 		}
@@ -169,7 +169,7 @@ void Uzi::evasor_debug(int evadir, int ignorar){
 					Serial.print(tmp + "////////////");
 					time_prev = time;
 				}
-				Motor::right(100,0);
+				Motor::right(100,300);
 			}
 			else if( (distancia_ob_izq > evadir) && (distancia_ob_der <= evadir) ){ // objeto por la derecha
 				if(time - time_prev >= interval){
@@ -184,7 +184,7 @@ void Uzi::evasor_debug(int evadir, int ignorar){
 					Serial.print(tmp + "////////////");
 					time_prev = time;
 				}
-				Motor::left(100,0);
+				Motor::left(100,300);
 			}
 			else if( (distancia_ob_izq <= evadir) && (distancia_ob_der <= evadir) ){ // objeto al frente
 				if(time - time_prev >= interval){
@@ -199,7 +199,7 @@ void Uzi::evasor_debug(int evadir, int ignorar){
 					Serial.print(tmp + "////////////");
 					time_prev = time;
 				}
-				Motor::right(100,0);
+				Motor::right(100,600);
 			}
 			else{
 				if(time - time_prev >= interval){

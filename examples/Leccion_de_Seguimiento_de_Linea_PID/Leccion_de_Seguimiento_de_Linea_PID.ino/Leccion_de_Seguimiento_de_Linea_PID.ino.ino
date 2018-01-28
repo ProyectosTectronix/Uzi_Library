@@ -13,8 +13,8 @@ float error_i = 0;
 float error_d = 0;
 int actuacion = 0;
 
-float Kp = 0.025;
-float Ki = 0.1;
+float Kp = 0.03;
+float Ki = 0.001;
 float Kd = 0.01;
 
 void setup() {
@@ -33,6 +33,10 @@ void loop() {
   error_prev = error_p;
 
   actuacion = Kp*error_p + Ki*error_i + Kd*error_d;
+
+  error_i = (actuacion > 100)?(0):
+              (actuacion < -100)?(0):
+              (error_i);
 
   actuacion = (actuacion > 100)?(100):
               (actuacion < -100)?(-100):

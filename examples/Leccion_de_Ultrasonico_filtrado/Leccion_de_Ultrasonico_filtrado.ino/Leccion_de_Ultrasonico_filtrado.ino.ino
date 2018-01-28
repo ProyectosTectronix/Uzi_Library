@@ -8,12 +8,12 @@
 Ultrasonic_UZI sonico = Ultrasonic_UZI();
 float lectura_raw_izq = 0;
 float lectura_raw_der = 0;
-int medicion_izq = 0;
-int medicion_der = 0;
+float medicion_izq = 0;
+float medicion_der = 0;
 
 void setup() {
   // put your setup code here, to run once:
-  Serial.begin();
+  Serial.begin(115200);
   sonico.init();
 }
 
@@ -45,9 +45,17 @@ void loop() {
   medicion_izq = 0.1*lectura_raw_izq + 0.9*medicion_izq;
   medicion_der = 0.1*lectura_raw_der + 0.9*medicion_der;
 
-  Serial.print("La lectura RAW izq. es : " + lectura_raw_izq + "\t");
-  Serial.print("La medición izq. filtrada es : " + medicion_izq + "\t\t\t");
-  Serial.print("La lectura RAW der. es : " + lectura_raw_der + "\t");
-  Serial.print("La medición der. filtrada es : " + medicion_der);
-  Serial.println();
+  String tmp = "";
+  tmp += "La lectura RAW izq. es : ";
+  tmp += lectura_raw_izq;
+  tmp += "\t";
+  tmp += "La medición izq. filtrada es : ";
+  tmp += (int)medicion_izq;
+  tmp += "\t\t\t";
+  tmp += "La lectura RAW der. es : ";
+  tmp += lectura_raw_der;
+  tmp += "\t";
+  tmp += "La medición der. filtrada es : ";
+  tmp += (int)medicion_der;
+  Serial.println(tmp);
 }
