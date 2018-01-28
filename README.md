@@ -16,7 +16,7 @@
     - **tatan()** : Emite un simpático sonido, perfecto para anunciar la finalización exitosa de una rutina.
     - **sound(** _int **nota**, int **octava**, int **delay**_ **)** : Emite el sonido de la **nota** y **octava** especificada durante el tiempo especificado por **delay**.
 
-- **Control Remoto y Monitoreo** : Está disponible un ejemplo **DEMO** que te permitirá interactuar con el _Robot Uzi_ usando nuestra aplicación móbil.
+- **Control Remoto y Monitoreo** : Está disponible un ejemplo **DEMO** que te permitirá interactuar con el _Robot Uzi_ usando nuestra aplicación móvil.
 
 - **LEDs RGB** : Se pueden crear instancias del objeto **Lights**, mediante su constructor por defecto _**Lights::* Lights()_, para poder utilizar los LEDs RGB del _Robot Uzi_. En la sección _ejemplos_ se encuantra disponible un código de prueba. Están disponibles las siguientes funciones:
     - **init()** : Inicializa el objeto para poder interactuar con los LEDs RGB.
@@ -30,4 +30,6 @@
         - _MAGENTA_
         - _AMARILLO_
         - _BLANCO_
-    - **getColor(** _int ***i**_ **)** : Retorna un número entero el color del LED con el identificador **i**
+    - **getColor(** _int ***i**_ **)** : Retorna un número entero el color del LED con el identificador **i**.
+
+    ... (coming soon) ...
