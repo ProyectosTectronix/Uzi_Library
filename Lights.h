@@ -43,6 +43,8 @@ public:
 	void badboy();
 	void off();
 	void rainbow();
+	void caribe();
+	void power();
 private:
 	int num_pix;
 	int brightness;

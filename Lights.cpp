@@ -261,3 +261,22 @@ void Lights::off(){
 		delay(1);
 	}
 }
+
+void Lights::caribe(){
+	for(int i=0; i<num_pix; i++){
+		leds_front->setPixelColor(i, leds_front->Color(CIAN)); // verde
+		leds_back->setPixelColor(i, leds_back->Color(0,255,64)); // verde
+		leds_front->show();
+		leds_back->show();
+		delay(1);
+	}
+}
+
+void Lights::power(){
+	leds_front->setPixelColor(0, leds_front->Color(ROJO)); // verde
+	leds_front->setPixelColor(1, leds_front->Color(VERDE)); // verde
+	leds_back->setPixelColor(0, leds_back->Color(AZUL)); // verde
+	leds_back->setPixelColor(1, leds_back->Color(AMARILLO)); // verde
+	leds_front->show();
+	leds_back->show();
+}

@@ -61,9 +61,11 @@ void loop(){
           buzz.tatan();
         break;
         case 6:
+          rgb.caribe();
           buzz.barata();
         break;
         case 7:
+          rgb.power();
           buzz.ranger();
         break;
         default:
