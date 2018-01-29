@@ -108,25 +108,25 @@ void Lights::demo(){
 void Lights::setColor(int i, int red, int green, int blue){
 	if(i < 4){
 		if(i >= 2){
-			if(Serial){
-				String tmp = "";
-				Serial.println(tmp + "index rgb: \t\t" + i);
-			}
+			//if(Serial){
+				//String tmp = "";
+				//Serial.println(tmp + "index rgb: \t\t" + i);
+			//}
 			leds_back->setPixelColor(i - 2, leds_back->Color(red, green, blue));
 		}
 		else{
-			if(Serial){
-				String tmp = "";
-				Serial.println(tmp + "index rgb: \t\t" + i);
-			}
+			//if(Serial){
+				//String tmp = "";
+				//Serial.println(tmp + "index rgb: \t\t" + i);
+			//}
 			leds_front->setPixelColor(i, leds_front->Color(red, green, blue));
 		}
 	}
 	else{
-		if(Serial){
-			String tmp = "";
-			Serial.println(tmp + "index rgb: \t\t" + i);
-		}
+		//if(Serial){
+			//String tmp = "";
+			//Serial.println(tmp + "index rgb: \t\t" + i);
+		//}
 	}
 	leds_front->show();
 	leds_back->show();
@@ -220,4 +220,44 @@ void Lights::rainbow(){
     	setColor(1,0,255,255-i);
     	delay(1);
   	}
+}
+
+void Lights::scary(){
+	for(int i=0; i<num_pix; i++){
+		leds_front->setPixelColor(i, leds_front->Color(50, 50, 50)); // gris
+		leds_back->setPixelColor(i, leds_back->Color(50, 50, 50)); // gris
+		leds_front->show();
+		leds_back->show();
+		delay(1);
+	}
+}
+
+void Lights::happy(){
+	for(int i=0; i<num_pix; i++){
+		leds_front->setPixelColor(i, leds_front->Color(0, 150, 0)); // verde
+		leds_back->setPixelColor(i, leds_back->Color(0, 150, 0)); // verde
+		leds_front->show();
+		leds_back->show();
+		delay(1);
+	}
+}
+
+void Lights::badboy(){
+	for(int i=0; i<num_pix; i++){
+		leds_front->setPixelColor(i, leds_front->Color(150, 0, 0)); // verde
+		leds_back->setPixelColor(i, leds_back->Color(150, 0, 0)); // verde
+		leds_front->show();
+		leds_back->show();
+		delay(1);
+	}
+}
+
+void Lights::off(){
+	for(int i=0; i<num_pix; i++){
+		leds_front->setPixelColor(i, leds_front->Color(0, 0, 0)); // verde
+		leds_back->setPixelColor(i, leds_back->Color(0, 0, 0)); // verde
+		leds_front->show();
+		leds_back->show();
+		delay(1);
+	}
 }

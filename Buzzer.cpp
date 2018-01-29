@@ -60,8 +60,9 @@ Buzzer::~Buzzer(){
  *     Emite un sonido puro de 262 Hz para testear el buzzer.
  */
 void Buzzer::init(){
-  tone(pin_buzzer,262,500);
-  delay(500);
+  //tone(pin_buzzer,262,500);
+  tatan();
+  //delay(500);
 }
 
 /**
@@ -224,10 +225,10 @@ void Buzzer::scary(){
  *     Emite un sonido caracteristico de successfull o finish.
  */
 void Buzzer::tatan(){
-	tone(pin_buzzer,440,100);
-  	delay(200);
-  	tone(pin_buzzer,440,700);
-  	delay(700);
+	sound(LA,7,100);
+  delay(200);
+  sound(LA,7,700);
+  delay(700);
 }
 
 /**
@@ -277,4 +278,76 @@ void Buzzer::sound(int nota, int octava, int d){
 void Buzzer::sound(int frecuencia, int d){
 	tone(pin_buzzer, frecuencia, d);
 	delay(d);
+}
+
+void Buzzer::barata(){
+  sound(DO,7,60);
+  delay(120);
+  sound(DO,7,60);
+  delay(120);
+  sound(DO,7,60);
+  delay(120);
+  sound(FA,7,60);
+  delay(450);
+  sound(LA,7,60);
+  delay(450);
+  sound(DO,7,60);
+  delay(120);
+  sound(DO,7,60);
+  delay(120);
+  sound(DO,7,60);
+  delay(120);
+  sound(FA,7,60);
+  delay(450);
+  sound(LA,7,300);
+  delay(450);
+  sound(FA,7,300);
+  delay(120);
+  sound(FA,7,60);
+  delay(120);
+  sound(MI,7,60);
+  delay(120);
+  sound(MI,7,60);
+  delay(120);
+  sound(RE,7,60);
+  delay(120);
+  sound(RE,7,60);
+  delay(120);
+  sound(DO,7,300);
+}
+
+void Buzzer::ranger(){
+  sound(RE, 8, 120);
+  delay(120);
+  sound(RE, 8, 120);
+  delay(120);
+  sound(DO, 8, 60);
+  delay(60);
+  sound(RE, 8, 120);
+  delay(120);
+  sound(FA, 8, 120);
+  delay(200);
+  sound(RE, 8, 120);
+  delay(120);
+}
+
+void Buzzer::march(){
+  sound(LA, 7, 375);
+  delay(125);
+  sound(LA, 7, 375);
+  delay(125);
+  sound(LA, 7, 375);
+  delay(125);
+  sound(FA, 7, 250);
+  delay(125);
+  sound(DO, 7, 60);
+  delay(65);
+  sound(LA, 7, 375);
+  delay(125);
+  sound(FA, 7, 250);
+  delay(125);
+  sound(DO, 8, 60);
+  delay(65);
+  sound(LA, 7, 500);
+  delay(500);
 }

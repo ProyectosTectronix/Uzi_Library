@@ -38,6 +38,10 @@ public:
 	int getColor(int n);
 	void demo();
 //	void stop();
+	void scary();
+	void happy();
+	void badboy();
+	void off();
 	void rainbow();
 private:
 	int num_pix;

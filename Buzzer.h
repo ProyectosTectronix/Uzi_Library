@@ -27,6 +27,9 @@ public:
 	void scary(); // expresion como la de Wall-i
 	void tatan(); // sonido  "TATAN"!
 	void car();
+	void barata();
+	void ranger();
+	void march();
 	int note(int nota, int octava);
 	void sound(int nota, int octava, int delay);
 	void sound(int frecuencia, int d);
