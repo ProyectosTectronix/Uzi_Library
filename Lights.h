@@ -12,8 +12,8 @@
  * @date : december 2016
  *
  * @description : 
- *   	Definicion de clase Lights para funciones básicas de los LEDs RGB
- *   Utilizando la biblioteca de funciones de Adafruit
+ *  Definition of the Lights Class for the basic funtions of the RGB Leds
+ *  Using the library of functions of adafruit
  */
 #ifndef _LIGHTS_H_
 #define _LIGHTS_H_
