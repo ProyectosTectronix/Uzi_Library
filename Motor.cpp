@@ -12,7 +12,7 @@
  * @date : december 2016
  *
  * @description : 
- *   Implementación de clase Motor para funciones basicas del robot
+ * implementation of the Motor Class for the funtions of the robot
  */
 #include "Arduino.h"
 #include "macros.h"
@@ -26,7 +26,7 @@
  * @return : none
  *
  * @description :
- *     Constructor por defecto, sólo inicializa con valores por defecto los atributos del Motor
+ *     default constructor, only initialize the Motor attributes with default values.
  */
 Motor::Motor(){
 	velocidad_min = 0;
@@ -41,21 +41,21 @@ Motor::Motor(){
   	pinMode(motor_B_pin, OUTPUT);
   	pinMode(motor_A_PWM_pin, OUTPUT);
   	pinMode(motor_B_PWM_pin, OUTPUT);
-  	digitalWrite(standby_pin, LOW); // se inicializa en LOW por seguridad
+  	digitalWrite(standby_pin, LOW); // start in low as precaution.
 }
 
 /**
  * @function : Motor(int vel_min, int vel_max)
  *
- * @param vel_min : velocidad minima del motor. Los valores van desde 0 a 255;
+ * @param vel_min : minimum speed of the motor. the values are between 0 to 255;
  *
- * @param vel_max : velocidad máxima del motor. Los valores van desde 0 a 255;
+ * @param vel_max : maximum speed of the motor. the values are between 0 to 255;
  *
  * @return : none
  *
  * @description :
- *     Constructor, sólo inicializa las velocidades minimas y maximas del robot,
- *   los demas atributos quedan con valores por defecto, además asigna los pines.
+ *     Constructor, only initialize the minimum speed and maximun speed of the robot,
+ *   the others attributes remain with default values, also assigns the pin´s.
  */
 Motor::Motor(int vel_min, int vel_max){
 	velocidad_min = vel_min;
@@ -70,14 +70,14 @@ Motor::Motor(int vel_min, int vel_max){
   	pinMode(motor_B_pin, OUTPUT);
   	pinMode(motor_A_PWM_pin, OUTPUT);
   	pinMode(motor_B_PWM_pin, OUTPUT);
-  	digitalWrite(standby_pin, LOW); // se inicializa en LOW por seguridad
+  	digitalWrite(standby_pin, LOW); // start in low as precaution.
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Motor::~Motor(){
 //
-} /* <------------------------------Destructor: por el momento no se pide memoria al sistema, //
-//					en caso de reservar memoria con malloc() o new() implemetar el destructor pertinente.*/   //
+} /* <------------------------------Destructor: for the moment memory is not requested to the system, //
+//					in case of booking memory with malloc() or new() implement the destructor pertinent.*/   //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -88,7 +88,7 @@ Motor::~Motor(){
  * @return : none
  *
  * @description :
- *     inicializa el Motor levantanto el pin standby_pin.
+ *    initialize the Motor lifting up the pin standby_pin.
  */
 void Motor::init(){
 	digitalWrite(standby_pin,HIGH);
@@ -97,14 +97,14 @@ void Motor::init(){
 /**
  * @function : void differentialFWD(int v_ml, int v_mr)
  *
- * @param v_ml : velocidad del motor izquierdo.
+ * @param v_ml : speed of the left motor.
  *
- * @param v_mr : velocidad del motor derecho.
+ * @param v_mr : speed of the right motor.
  *
  * @return : none
  *
  * @description :
- *     Permite que los motores operen a velocidades distintas avanzando hacia adelante.
+ *      Allow engines to operate at different speeds moving forward.
  */
 void Motor::differentialFWD(int v_ml, int v_mr){
 	if(v_ml < velocidad_min)
@@ -129,12 +129,12 @@ void Motor::differentialFWD(int v_ml, int v_mr){
 /**
  * @function : void forward(int v_fwd)
  *
- * @param v_fwd : velocidad del avance de los motores
+ * @param v_fwd : speed of the motors.
  *
  * @return : none
  *
  * @description :
- *     El robot avanza hacia adelante con velocidad v_fwd
+ *     the robot go forward with v_fwd speed 
  */
 void Motor::forward(int v_fwd){
 	if(v_fwd < velocidad_min)
@@ -153,14 +153,14 @@ void Motor::forward(int v_fwd){
 /**
  * @function : void differentialBWD(int v_ml, int v_mr)
  *
- * @param v_ml : velocidad del motor izquierdo.
+ * @param v_ml : speed of the left motor.
  *
- * @param v_mr : velocidad del motor derecho.
+ * @param v_mr : speed of the right motor.
  *
  * @return : none
  *
  * @description :
- *     Permite que los motores operen a velocidades distintas en reversa.
+ *     Allow to operate the motors at different speeds in backwards.
  */
 void Motor::differentialBWD(int v_ml, int v_mr){
 	if(v_ml < velocidad_min)
@@ -185,12 +185,12 @@ void Motor::differentialBWD(int v_ml, int v_mr){
 /**
  * @function : void backward(int v_bckwd)
  *
- * @param v_bckwd : velocidad de retroceso
+ * @param v_bckwd : backwards speed
  *
  * @return : none
  *
  * @description :
- *     Permite que el robot retroceda a velocidad v_bckwd
+ *     allow the robot go backwards at v_bckwd speed 
  */
 void Motor::backward(int v_bckwd){
 	if(v_bckwd < velocidad_min)
@@ -209,9 +209,9 @@ void Motor::backward(int v_bckwd){
 /**
  * @function : void left(int v_left, int t_left)
  *
- * @param v_left : velocidad de giro del robot.
+ * @param v_left : speed of turn robot .
  *
- * @param t_left : tiempo en ms que gira el robot.
+ * @param t_left : time in ms of the turn robot.
  *
  * @return : none
  *
