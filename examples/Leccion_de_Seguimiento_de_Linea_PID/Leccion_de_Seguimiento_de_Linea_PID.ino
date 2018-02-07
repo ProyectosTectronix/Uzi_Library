@@ -6,7 +6,7 @@ Motor motores = Motor();
 Qre linea = Qre();
 
 int qres = 0;
-int referencia = 3000; // 1000 al 5000, 3000 es el centro.
+int referencia = 3000; // 1000 to 5000, 3000 is the middle.
 float error_prev = 0;
 float error_p = 0;
 float error_i = 0;
