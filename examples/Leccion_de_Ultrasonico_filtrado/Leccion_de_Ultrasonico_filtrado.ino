@@ -1,5 +1,5 @@
 /**
- * Favor revisar la Lección de Ultrasónicos antes de revisar esta lección.
+ * Please review the Ultrasound Lesson before reviewing this lesson.
  */
 
 #include <macros.h>
@@ -25,22 +25,22 @@ void loop() {
   delay(20);
 
 /**
- * A continuación se muestra una forma de filtrar o amortiguar el efecto de las mediciones outliers.
- * Las siguientes lineas de código obtienen un promedio ponderado de la medición pura y la medición anterior.
- * La idea central de esta aplicación es darle inercia a la medición obtenida para que las lecturas
- * no persistentes en el tiempo no afecten a la medicion final.
+ *Below is a way to filter or buffer the effect of outliers measurements.
+ * The following lines of code get a weighted average of the pure measurement and the previous measurement.
+ * The central idea of this application is to give inertia to the measurement obtained so that the readings
+ * not persistent over time do not affect the final measurement.
  * 
- * Aca se muestra un caso bastante extremo en donde las lecturas serían muy ruidosas y por ello éstas no 
- * serían de ultilidad.
+ * Here is a very extreme case where the readings would be very noisy and therefore they would not be of utility. 
  * 
- * El promedio pondera con el 10% a la lectura RAW, mientras que a la medición anterior con un 90%.
  * 
- * Cabe destacar que utilizar esta técnica introduce retardo en la medición, en este caso en particular
- * la medición tarda 40 lecturas en estabilizarse si un objeto aparece de la nada.
+ * The average weighted with 10% to the RAW reading, while the previous measurement with 90%.
  * 
- * Esto es una variable a considerar para la evasión de obstáculos, ya que, si el robot avanza muy rápido
- * la medición puede no alcanzar a detectar la presencia de un obstáculo haciendo que el robot choque antes 
- * de esquivarlo.
+ * It should be noted that using this technique to introduce delay in the measurement, in this particular case  
+ * the measurement takes 40 readings to stabilize if an object appears out of nowhere.
+ * 
+ *This is a variable to consider for the evasion of obstacles, since, if the robot advances very fast
+ * the measurement may not reach to detect the presence of an obstacle making the robot collide before dodging. 
+ * 
  */
   medicion_izq = 0.1*lectura_raw_izq + 0.9*medicion_izq;
   medicion_der = 0.1*lectura_raw_der + 0.9*medicion_der;
