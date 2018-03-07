@@ -1,4 +1,4 @@
-mp/**
+/**
  * Example for the lesson N° 3 - how to use the rgb leds.
  */
 
