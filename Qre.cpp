@@ -30,7 +30,7 @@ void Qre::reset(int pin){
 	delay(3);
 	digitalWrite(pin, LOW);
 	pinMode(pin, INPUT);
-	delay(3);
+	delay(5);
 }
 
 int *Qre::read(){
