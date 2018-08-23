@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////
 //                            TECTRONIX								//
-//                 Software Library for UZI_ROBOT					//
+//                 Software Library for UZI_line_follower->				//
 //                             Enjoy!								//
 //////////////////////////////////////////////////////////////////////
 
@@ -15,16 +15,27 @@
  */
 
 #include "Arduino.h"
-#include "macros.h"
+#include "Button.h"
+#include "Buzzer.h"
+//#include "Control_BLE_v2_0.h"
+#include "Lights.h"
 #include "Motor.h"
+#include "Qre.h"
 #include "Ultrasonic_UZI.h"
 #include "Uzi.h"
 
 Uzi::Uzi():Motor(){
-	s_sonic = new Ultrasonic_UZI();
-	line_follower = new Qre();
-	leds_RGB = new Lights();
+	button1 = new Button(1);
+	button2 = new Button(2);
+	button3 = new Button(3);
+	button4 = new Button(4);
+	button5 = new Button(5);
 	buzzer = new Buzzer();
+	//ble = new Control_BLE();
+	leds_RGB = new Lights();
+	line_follower = new Qre();
+	s_sonic = new Ultrasonic_UZI();
+
 	umbral_sonic_cercano = SONIC_MIN; // por default son 3 cm segun datasheet
 	umbral_sonic_lejano = SONIC_MAX; // por default son 3 metros segun datasheet
 	time_prev = 0;
@@ -40,21 +51,35 @@ Uzi::Uzi():Motor(){
 	actuation = 0;
 	saturation = 0;
 	follower_velocity = 0;
+	qres = NULL;
 }
 
 Uzi::~Uzi(){
-	delete s_sonic;
-	delete line_follower;
-	delete leds_RGB;
+	delete button1;
+	delete button2;
+	delete button3;
+	delete button4;
+	delete button5;
 	delete buzzer;
+	//delete ble;
+	delete leds_RGB;
+	delete line_follower;
+	delete s_sonic;
 }
 
 void Uzi::init(){
 	Motor::init();
-	s_sonic->init();
-	line_follower->init();
-	leds_RGB->init();
+	button1->init();
+	button2->init();
+	button3->init();
+	button4->init();
+	button5->init();
 	buzzer->init();
+	//ble->init();
+	leds_RGB->init();
+	line_follower->init();
+	s_sonic->init();
+
 	distancia_ob_izq = SONIC_MAX;
 	distancia_ob_der = SONIC_MAX;
 	time_prev = 0;
@@ -70,6 +95,300 @@ void Uzi::init(){
 	actuation = 0;
 	saturation = 250;
 	follower_velocity = 100;
+	return;
+}
+
+bool Uzi::isPressed(int b){
+	switch(b){
+		case 1 : {
+			return button1->isPressed();
+			break;
+		}
+		case 2 : {
+			return button2->isPressed();
+			break;
+		}
+		case 3 : {
+			return button3->isPressed();
+			break;
+		}
+		case 4 : {
+			return button4->isPressed();
+			break;
+		}
+		case 5 : {
+			return button5->isPressed();
+			break;
+		}
+		default : {
+			return false;
+			break;
+		}
+	}
+	return false;
+}
+
+bool Uzi::isReleased(int b){
+	switch(b){
+		case 1 : {
+			return button1->isReleased();
+			break;
+		}
+		case 2 : {
+			return button2->isReleased();
+			break;
+		}
+		case 3 : {
+			return button3->isReleased();
+			break;
+		}
+		case 4 : {
+			return button4->isReleased();
+			break;
+		}
+		case 5 : {
+			return button5->isReleased();
+			break;
+		}
+		default : {
+			return false;
+			break;
+		}
+	}
+	return false;
+}
+
+bool Uzi::isClicked(int b){
+	switch(b){
+		case 1 : {
+			return button1->isClicked();
+			break;
+		}
+		case 2 : {
+			return button2->isClicked();
+			break;
+		}
+		case 3 : {
+			return button3->isClicked();
+			break;
+		}
+		case 4 : {
+			return button4->isClicked();
+			break;
+		}
+		case 5 : {
+			return button5->isClicked();
+			break;
+		}
+		default : {
+			return false;
+			break;
+		}
+	}
+	return false;
+}
+
+void Uzi::getState(int b){
+	switch(b){
+		case 1 : {
+			return button1->getState();
+			break;
+		}
+		case 2 : {
+			return button2->getState();
+			break;
+		}
+		case 3 : {
+			return button3->getState();
+			break;
+		}
+		case 4 : {
+			return button4->getState();
+			break;
+		}
+		case 5 : {
+			return button5->getState();
+			break;
+		}
+		default : {
+			return false;
+			break;
+		}
+	}
+	return false;
+}
+
+void Uzi::r3d3(){
+	buzzer->r3d3();
+	return;
+}
+
+void Uzi::uzi(){
+	buzzer->uzi();
+	return;
+}
+
+void Uzi::happy(){
+	leds_RGB->happy();
+	buzzer->happy();
+	return;
+}
+
+void Uzi::scary(){
+	leds_RGB->scary();
+	buzzer->scary();
+	return;
+}
+
+void Uzi::tatan(){
+	buzzer->tatan();
+	return;
+}
+
+void Uzi::car(){
+	buzzer->car();
+	return;
+}
+
+void Uzi::barata(){
+	buzzer->barata();
+	return;
+}
+
+void Uzi::ranger(){
+	buzzer->ranger();
+	return;
+}
+
+void Uzi::march(){
+	buzzer->march();
+	return;
+}
+
+int Uzi::note(int nota, int octava){
+	return buzzer->note(nota, octava);
+}
+
+void Uzi::sound(int nota, int octava, int delay){
+	buzzer->sound(nota, octava, delay);
+	return;
+}
+
+void Uzi::sound(int frecuencia, int d){
+	buzzer->sound(frecuencia, d);
+	return;
+}
+
+/*
+void Uzi::updateStateBLEConection(bool Acknowledge){
+	ble->updateStateBLEConection(Acknowledge);
+	return;
+}
+
+void Uzi::updateStateMachine(){
+	ble->updateStateMachine();
+	return;
+}
+
+void Uzi::updateStateUZI(int data){
+	ble->updateStateUZI(data);
+	return;
+}
+
+void Uzi::updateStateDirection(int data){
+	ble->updateStateDirection(data);
+	return;
+}
+
+void Uzi::updateStateAction(int data){
+	ble->updateStateAction(data);
+	return;
+}
+*/
+void Uzi::connection_standby(){
+	leds_RGB->connection_standby();
+	return;
+}
+
+void Uzi::connected(){
+	leds_RGB->connected();
+	return;
+}
+
+void Uzi::disconnected(){
+	leds_RGB->disconnected();
+	return;
+}
+
+void Uzi::setColor(int i, int red, int green, int blue){
+	leds_RGB->setColor(i, red, green, blue);
+	return;
+}
+
+void Uzi::setBrightness(int b){
+	leds_RGB->setBrightness(b);
+	return;
+}
+
+int Uzi::getColor(int n){
+	return leds_RGB->getColor(n);
+}
+
+void Uzi::demo(){
+	leds_RGB->demo();
+	return;
+}
+/*
+void Uzi::scary(){
+	leds_RGB->scary();
+	return;
+}
+
+void Uzi::happy(){
+	leds_RGB->happy();
+	return;
+}
+*/
+void Uzi::badboy(){
+	leds_RGB->badboy();
+	return;
+}
+
+void Uzi::off(){
+	leds_RGB->off();
+	return;
+}
+
+void Uzi::rainbow(){
+	leds_RGB->rainbow();
+	return;
+}
+
+void Uzi::caribe(){
+	leds_RGB->caribe();
+	return;
+}
+
+void Uzi::power(){
+	leds_RGB->power();
+	return;
+}
+
+int *Uzi::read(){
+	return line_follower->read();
+}
+
+void Uzi::reset(int pin){
+	line_follower->reset(pin);
+	return;
+}
+
+int Uzi::readLine(){
+	return line_follower->readLine();
+}
+
+float Uzi::read(int sensor, int ignorar_medicion){
+	return s_sonic->read(sensor, ignorar_medicion);
 }
 
 void Uzi::evasor(int evadir, int ignorar){
@@ -339,4 +658,114 @@ void Uzi::seguidor(){
 	}
 	}
 
+}
+
+void Uzi::maze(){
+  static int count___ = 0;
+  qres = line_follower->read();  
+  if((qres[0] == 0) && (qres[1] == 0) && (qres[2] == 0) && (qres[3] == 0) && (qres[4] == 0)){ // si estoy en lo blanco
+    //count___++;
+    //if(count___ <= 100) return;
+    count___ = 0;
+    Motor::forward(50);
+    delay(250);
+    Motor::stop();
+    Motor::left(50,800);
+    Motor::stop();
+    qres = line_follower->read();
+    if((qres[0] == 1) || (qres[1] == 1) || (qres[2] == 1) || (qres[3] == 1) || (qres[4] == 1)){ //si a la izquierda hay línea
+      Motor::backward(50); //me posiciono en la línea.
+      delay(400);
+      Motor::stop();
+      return;
+    }
+    else{
+      Motor::right(50,800); // busco línea al frente
+      Motor::stop();
+      qres = line_follower->read();
+      if((qres[0] == 1) || (qres[1] == 1) || (qres[2] == 1) || (qres[3] == 1) || (qres[4] == 1)){ // si hay línea al frente
+        Motor::backward(50);
+        delay(400);
+        Motor::stop();
+        return;
+      }
+      else{
+        Motor::right(50,800); // busco línea a la derecha
+        Motor::stop();
+        qres = line_follower->read();
+        if((qres[0] == 1) || (qres[1] == 1) || (qres[2] == 1) || (qres[3] == 1) || (qres[4] == 1)){ // si hay línea a la derecha
+          Motor::backward(50);
+          delay(400);
+          Motor::stop();
+          return;
+        }
+        else{
+          Motor::right(50,800); // giro a la derecha
+          Motor::stop();
+          return;
+        }
+      }
+    }
+  }
+  else if((qres[0] == 1) && (qres[1] == 1) && (qres[2] == 1) && (qres[3] == 1) && (qres[4] == 1)){
+  	count___++;
+    if(count___ >= 10){
+    	Motor::stop();
+    	march();
+    	delay(5000);
+    	return;
+    }
+    //count___ = 0;
+  	Motor::forward(30);
+  	delay(10);
+  }
+  else if( ((qres[0] == 1) && (qres[1] == 1) && (qres[2] == 1) && (qres[3] == 0) && (qres[4] == 0)) || ((qres[0] == 1) && (qres[1] == 1) && (qres[2] == 1) && (qres[3] == 1) && (qres[4] == 0)) ){
+    count___ = 0;
+    Motor::forward(50);
+    delay(250);
+    Motor::stop();
+    Motor::left(50,800);
+    Motor::stop();
+    qres = line_follower->read();
+    if((qres[0] == 1) || (qres[1] == 1) || (qres[2] == 1) || (qres[3] == 1) || (qres[4] == 1)){ //si a la izquierda hay línea
+      Motor::backward(50); //me posiciono en la línea.
+      delay(400);
+      Motor::stop();
+      return;
+    }
+    else{
+      Motor::right(50,800); // giro a la derecha
+      Motor::stop();
+      return;
+    }
+  }
+  else if( (qres[0] == 1) ){ // si la linea está al extremo izquierdo
+  	count___ = 0;
+    Motor::differentialFWD(60,80);
+    return;
+  }
+  else if( (qres[4] == 1) ){ // si la línea está en el extremo derecho
+  	count___ = 0;
+    Motor::differentialFWD(80,60);
+    return;
+  }
+  else if( (qres[1] == 1) ){
+  	count___ = 0;
+    Motor::differentialFWD(70,80);
+    return;
+  }
+  else if( (qres[3] == 1) ){
+  	count___ = 0;
+    Motor::differentialFWD(80,70);
+    return;
+  }
+  else if( (qres[2] == 1) ){ // si hay línea al medio, avanzo.
+  	count___ = 0;
+    Motor::forward(100);
+    return;
+  }
+  else{
+    count___ = 0;
+  }
+  delay(1);
 }

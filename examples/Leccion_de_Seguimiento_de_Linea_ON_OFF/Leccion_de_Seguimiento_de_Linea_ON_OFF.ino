@@ -26,10 +26,10 @@ void loop() {
     motores.forward(50);  
   }
   else if(qres[0] == 1){ // If there is a line to the far left, move forward to the right.
-    motores.differentialFWD(50,100);  
+    motores.differentialFWD(0,50);  
   }
   else if(qres[4] == 1){ // If there is a line to the far right, move forward to the left.
-    motores.differentialFWD(100,50);
+    motores.differentialFWD(50,0);
   }
   else{
     motores.stop(0);  // If no case is met, stop.

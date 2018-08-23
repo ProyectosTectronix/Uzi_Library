@@ -28,6 +28,8 @@
 #include "Lights.h"
 #include "Buzzer.h"
 
+class Uzi;
+
 class Control_BLE{
 public:
 	Control_BLE();

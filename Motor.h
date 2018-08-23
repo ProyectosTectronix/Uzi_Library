@@ -31,9 +31,9 @@ public:
 	void forward(int v_fwd);
 	void differentialBWD(int v_ml, int v_mr);
 	void backward(int v_bckwd);
-	void left(int v_left, int t_left);
-	void right(int v_right, int t_right);
-	void stop(int t_parado);
+	void left(int v_left, int t_left = 0);
+	void right(int v_right, int t_right = 0);
+	void stop(int t_parado = 0);
 
 private:
 	int velocidad_min;

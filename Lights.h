@@ -20,7 +20,7 @@
 
 #include "Arduino.h"
 #include "macros.h"
-#include <Adafruit_NeoPixel.h>
+#include "Adafruit_NeoPixel.h"
 #ifdef __AVR__
   #include <avr/power.h>
 #endif

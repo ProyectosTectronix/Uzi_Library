@@ -30,12 +30,30 @@ void Qre::reset(int pin){
 	delay(3);
 	digitalWrite(pin, LOW);
 	pinMode(pin, INPUT);
-	delay(5);
+	//delay(5);
 }
 
 int *Qre::read(){
 	for(int i=0; i<5; i++){
 		reset(array_qre[i]);
+		if(i == 0){
+			delay(6);
+		}
+		else if( i == 1){
+			delay(4);
+		}
+		else if(i == 2){
+			delay(3);
+		}
+		else if(i == 3){
+			delay(4);
+		}
+		else if( i == 4){
+			delay(6);
+		}
+		else{
+			delay(5);
+		}
 		data_qre[i] = (digitalRead(array_qre[i]) == HIGH)?(1):(0);
 	}
 	return data_qre;

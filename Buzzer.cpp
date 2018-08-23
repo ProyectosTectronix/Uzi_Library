@@ -61,8 +61,16 @@ Buzzer::~Buzzer(){
  */
 void Buzzer::init(){
   //tone(pin_buzzer,262,500);
-  tatan();
+  //tatan();
   //delay(500);
+  sound(LA,7,100);
+  delay(200);
+  sound(LA,7,100);
+  delay(200);
+  sound(LA,7,100);
+  delay(200);
+  sound(LA,7,100);
+  delay(200);
 }
 
 /**

@@ -41,7 +41,7 @@ Control_BLE::~Control_BLE(){
 void Control_BLE::init(){
 	robot->init();
 	leds_RGB->init();
-	buzzer->init();
+	//buzzer->init();
 	state_connection = DISCONNECTED;
 	state_machine = STOP;
 	state_uzi = STOP;
@@ -167,7 +167,7 @@ void Control_BLE::updateStateUZI(int data){
 				state_uzi = STOP;
 			}
 			else if(state_machine == RUN){
-				if( (data == AUTO_ON) || (data == 83)){
+				if( (data == AUTO_ON) || (data == 83) || (data == 77) ){
 					state_uzi = AUTO;
 				}
 				else{
@@ -505,10 +505,14 @@ void Control_BLE::updateStateAction(int data){
 			}
 			break;
 		case AUTO :
+			Serial.print("\n>>> LOG : data:\t");
+			Serial.println(data);
 			if(data == 69)
 				robot->evasor_debug(15,30);
 			else if(data == 83)
 				robot->seguidor();
+			else if(data == 77)
+				robot->maze();
 			break;
 		default :
 			robot->stop(0);
